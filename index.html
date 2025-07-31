@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MapKit! Get Started with Google Maps Today!</title>
+    <link rel="stylesheet" href="stylesheets.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>MapKit</h1>
+            <nav id="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gettingstarted.html">Getting Started</a></li>
+                <li><a href="#template">Templates</a></li>
+            </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- Description Section -->
+    <!-- <section id="description">
+        <div class="container desc-container">
+            <div class="desc-left">
+            <h2><span class="accent-bar"></span> About MapKit</h2>
+            <p>
+                MapKit is a collection of ready-to-use templates designed to help developers build projects faster with the 
+                Google Maps API. Whether you're exploring a new idea or launching a full product, MapKit lets you skip the setup 
+                and get straight to building.
+            </p>
+            </div>
+        </div>
+    </section> -->
+    <section class="mapkit-hero">
+  <div class="hero-left">
+    <h1>Welcome to MapKit</h1>
+    <p>
+      MapKit is a collection of ready-to-use templates designed to help developers build projects faster with the Google Maps API. 
+      Whether you're exploring a new idea or launching a full product, MapKit lets you skip the setup and get straight to building.
+      Best part? We're built by the community, for the community.
+    </p>
+    <a href="#templates" class="cta-button">Browse Templates</a>
+  </div>
+  <div class="hero-right">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12093.43679276419!2d-87.6298!3d41.8781!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1691252630013" 
+      width="100%"
+      height="100%"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+</section>
+
+
+    <!-- Template Grid Section -->
+    <section id="templates">
+        <div class="container">
+            <h2 class="section-header"></span>Templates</h2>
+
+            <section id="search">
+                <div class="searchContainer">
+                    <input type="text" id="search-input" placeholder="Search templates by keywords" />
+                </div>
+            </section>
+
+
+            <div class="template-grid" id="template-grid">
+                <!-- Template 1 -->
+                <div class="template-card" data-tags="real, estate, buy, house">
+                    <span class="type-tag">Web Template</span>
+                    <img src="real-estate.png" alt="Template 1">
+                    <h3>Real Estate Lookup</h3>
+                    <p>View nearby homes for sale and filter by preference</p>
+                    <div class="tags">
+                        <span class="realestatetag">Real Estate</span>
+                        <span class="searchtag">Search</span>
+                    </div>
+                    <button class="preview-btn" id="preview1" data-template="template2.zip">Preview</button>
+
+                    <div id="mapModal1" class="modal">
+                        <div class="modal-content">
+                            <span class="close" id="closeMapBtn1">&times;</span>
+                            <h2 style="margin-bottom: 5px;">Real Estate Template</h2>
+                            <iframe src="realestate.html" width="100%" height="80vh" style="border: none;"></iframe>
+                        </div>
+                    </div>
+
+                    <button class="download-btn" onclick="downloadTemplate('realestate.html')">Download</button>
+
+                    <p class="creator">Created by: Devanshu Pandya, Yogi Patel</p>
+                </div>
+
+                <!-- Template 2 -->
+                <div class="template-card" data-tags="travel, vacation, plan, itinerary">
+                    <span class="type-tag">Web Template</span>
+                    <img src="tour.png" alt="Template 2">
+                    <h3>Destination Planner</h3>
+                    <p>Create your own itineraries for famous destinations</p>
+                    <div class="tags">
+                        <span class="traveltag">Travel</span>
+                        <span class="markertag">Markers</span>
+                    </div>
+                    <button id="preview2" class="preview-btn" data-template="template2.zip">Preview</button>
+
+                    <div id="mapModal2" class="modal">
+                        <div class="modal-content">
+                            <span class="close" id="closeMapBtn2">&times;</span>
+                            <h2 style="margin-bottom: 5px;">Destination Planner</h2>
+                            <iframe src="tourmap.html" width="100%" height="80vh" style="border: none;"></iframe>
+                        </div>
+                    </div>
+
+                    <button class="download-btn" onclick="downloadTemplate('tourmap.html')">Download</button>
+
+                    <p class="creator">Created by: Yogi Patel, Kush Patel</p>
+                </div>
+
+                <!-- Template 3 -->
+                <div class="template-card" data-tags="activity, plan, people, fun">
+                    <span class="type-tag">Chrome Extension</span>
+                    <img src="activityplanner.png" alt="Template 3">
+                    <h3>Activity Finder</h3>
+                    <p>Find the nearest locations for activities in an Chrome Extension from your searches</p>
+                    <div class="tags">
+                        <span class="markertag">Markers</span>
+                        <span class="nearmetag">Near-Me</span>
+                    </div>
+                    <!-- <button class="preview-btn" data-template="template2.zip">Preview</button> -->
+                    <button class="download-btn" onclick="downloadTemplate('ActivityPlannerCE.zip')">Download</button>
+                    <!-- idk what i'm doing, Google if you're seeing this, pity points please -->
+
+                    <p class="creator">Created by: Kush Patel, Devanshu Pandya</p>
+                </div>
+
+                <!-- Template 4 -->
+                <div class="template-card" data-tags="weather, globe, visuals, api">
+                    <img src="weather.png" alt="Template 4">
+                    <span class="type-tag">Chrome Extension</span>
+                    <h3>Template 4</h3>
+                    <p>Map with custom layers and markers.</p>
+                    <div class="tags">
+                        <span class="visualtag">Visualizations</span>
+                        <span class="leaflettag">LeafLet</span>
+                    </div>
+                    <!-- <button class="preview-btn" data-template="template2.zip">Preview</button> -->
+                    <button class="download-btn" onclick="download('weatherCE.zip')">Download</button>
+
+                    <p class="creator">Created by: Yogi Patel, Kush Patel</p>
+                </div>
+
+                <!-- Template 5 -->
+                <div class="template-card" data-tags="kush">
+                    <img src="basic.png" alt="Template 5">
+                     <span class="type-tag">Web Template</span>
+                    <h3>Basic Map</h3>
+                    <p>Your Step 1 into Google Maps</p>
+                    <div class="tags">
+
+                        <span class="basictag">Basic</span>
+                    </div>
+                    <button class="preview-btn" id="preview5" data-template="template2.zip">Preview</button>
+
+                    <div id="mapModal5" class="modal">
+                        <div class="modal-content">
+                            <span class="close" id="closeMapBtn5">&times;</span>
+                            <h2 style="margin-bottom: 5px;">Real Estate Template</h2>
+                            <iframe src="basic.html" width="100%" height="80vh" style="border: none;"></iframe>
+                        </div>
+                    </div>
+
+                    <button class="download-btn" onclick="downloadTemplate('basic.html')">Download</button>
+
+                    <p class="creator">Created by: Devanshu Pandya, Kush Patel</p>
+                </div>
+
+                <button class="template-card upload-card" id="upload-template-card">
+                    <div class="upload-icon">+</div>
+                    <h3>Upload Your Template</h3>
+                    <p>Share your own Google Maps template with the community!</p>
+                    <input type="file" id="upload-input" accept=".zip" hidden>
+                    <!-- <button class="upload-btn" onclick="document.getElementById('upload-input').click()">Choose File</button> -->
+                </button>
+
+
+
+            <div id="uploadModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Submit Your Template</h2>
+                    <form id="templateUploadForm">
+                    <label for="templateName">Template Name</label>
+                    <input type="text" id="templateName" name="templateName" required>
+
+                    <label for="templateKeywords">Keywords (comma-separated)</label>
+                    <input type="text" id="templateKeywords" name="templateKeywords" placeholder="maps, directions, POI">
+
+                    <label for="templateDescription">Description</label>
+                    <textarea id="templateDescription" name="templateDescription" rows="4"></textarea>
+
+                    <label for="templateImage">Upload Preview Image</label>
+                    <input type="file" id="templateImage" name="templateImage" accept="image/*" required>
+
+                    <label for="templateFiles">Upload Folder</label>
+                    <input type="file" id="templateFiles" name="templateFiles" webkitdirectory directory multiple required>
+
+                    <button type="submit">Submit Template</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="footer">
+        <div class="container">
+            <p>&copy; 2025 MapKit</p>
+            <p style="margin-top: 3px;">Thank you Google!</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function downloadTemplate(filename) {
+  console.log("Download function called with:", filename);
+  const link = document.createElement('a');
+  link.href = filename;
+  console.log("Link href:", link.href);
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+    </script>
+</body>
+</html>

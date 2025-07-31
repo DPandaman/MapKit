@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Map Tour Template</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    #map {
+      height: 100%;
+      width: 100%;
+    }
+    .tour-controls {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 15px 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      z-index: 10;
+      max-width: 300px;
+      width: 100%;
+    }
+    .tour-controls h3 {
+      margin: 0;
+      padding-bottom: 10px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .tour-controls button {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 5px 0;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .tour-controls button:hover {
+      background-color: #0056b3;
+    }
+    .location-list {
+      margin-top: 20px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .location-list ul {
+      padding: 0;
+      list-style-type: none;
+    }
+    .location-list li {
+      margin: 10px 0;
+      font-size: 14px;
+      color: #333;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s;
+    }
+    .location-list li.active {
+      font-weight: bold;
+      color: #007bff;
+      background-color: #e6f2ff;
+    }
+    .location-list li:hover {
+      background-color: #f0f0f0;
+    }
+    .location-description {
+      font-size: 12px;
+      color: #555;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="tour-controls">
+    <h3>Explore Chicago</h3>
+    <button onclick="prevSpot()">Previous</button>
+    <span id="location-name">Navy Pier</span>
+    <button onclick="nextSpot()">Next</button>
+    <div class="location-list">
+      <strong>Itinerary:</strong>
+      <ul id="itinerary"></ul>
+    </div>
+  </div>
+  <div id="map"></div>
+
+  <script>
+    let map;
+    let currentIndex = 0;
+    const locations = [
+      {
+        name: "Navy Pier",
+        city: "Chicago",
+        lat: 41.8916,
+        lng: -87.6007,
+        zoom: 17,
+        tilt: 45,
+        heading: 90
+        
+      },
+      {
+        name: "Millennium Park",
+        city: "Chicago",
+        lat: 41.8826,
+        lng: -87.6226,
+        zoom: 17,
+        tilt: 45,
+        heading: 180
+      },
+      {
+        name: "Willis Tower Skydeck",
+        city: "Chicago",
+        lat: 41.8789,
+        lng: -87.6359,
+        zoom: 17,
+        tilt: 45,
+        heading: 270
+      },
+      {
+        name: "The Art Institute of Chicago",
+        city: "Chicago",
+        lat: 41.8796,
+        lng: -87.6237,
+        zoom: 18,
+        tilt: 45,
+        heading: 120
+      }
+    ];
+
+    function initMap() {
+      const first = locations[0];
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: first.lat, lng: first.lng },
+        zoom: first.zoom,
+        mapTypeId: 'satellite',
+        tilt: first.tilt,
+        heading: first.heading,
+        mapId: 'DEMO_MAP_ID'
+      });
+      document.getElementById("location-name").textContent = first.name;
+      updateItinerary();
+      apply3DView(first);
+    }
+
+    function apply3DView(loc) {
+      map.setZoom(loc.zoom);
+      map.setHeading(loc.heading);
+      map.setTilt(loc.tilt);
+      map.panTo({ lat: loc.lat, lng: loc.lng });
+    }
+
+    function goToIndex(index) {
+      if (index < 0 || index >= locations.length) return;
+      currentIndex = index;
+      const loc = locations[index];
+      document.getElementById("location-name").textContent = loc.name;
+      apply3DView(loc);
+      updateItinerary();  // Update the itinerary after changing the location
+    }
+
+    function nextSpot() {
+      if (currentIndex < locations.length - 1) {
+        goToIndex(currentIndex + 1);
+      }
+    }
+
+    function prevSpot() {
+      if (currentIndex > 0) {
+        goToIndex(currentIndex - 1);
+      }
+    }
+
+    function updateItinerary() {
+      const list = document.getElementById("itinerary");
+      list.innerHTML = "";
+      locations.forEach((loc, idx) => {
+        const item = document.createElement("li");
+        item.innerHTML = `<strong>${loc.city} - ${loc.name}</strong><br>`;
+        if (idx === currentIndex) {
+          item.classList.add("active");  // Add the active class to the current location
+        }
+        list.appendChild(item);
+      });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCdx5DbiVZ3cthq9l63EzQrDk265npm-k&callback=initMap"></script>
+</body>
+</html>

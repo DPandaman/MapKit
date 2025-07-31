@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Getting Started: MapKit</title>
+  <link rel="stylesheet" href="stylesheet.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1>MapKit: Getting Started with Secure API Keys</h1>
+      <nav id="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="gettingstarted.html">Getting Started</a></li>
+          <li><a href="index.html#templates">Templates</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <section class="gs-intro">
+    <div class="gs-container">
+      <h2>Set Up Your Google Maps API Key Securely</h2>
+      <p>Make sure your API keys are safe and secure before starting your projects!</p>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="gs-steps">
+    <div class="gs-container">
+
+      <div class="gs-step">
+        <div class="gs-step-number">1</div>
+        <div class="gs-step-content">
+          <h3>Get a Google Maps API Key</h3>
+          <p>
+            Go to the <a href="https://console.cloud.google.com/" target="_blank" rel="noopener noreferrer">Google Cloud Console</a>, create a new project, and enable the <strong>Maps JavaScript API</strong>.
+          </p>
+          <!-- <p>
+            <strong>Direct link:</strong> <a href="https://console.cloud.google.com/apis/library/maps-backend.googleapis.com" target="_blank" rel="noopener noreferrer">Enable Maps API</a>
+          </p> -->
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step-number">2</div>
+        <div class="gs-step-content">
+          <h3>Restrict Your API Key</h3>
+          <p>In the Cloud Console under <em>Credentials</em>, add HTTP referrer restrictions (e.g., <code>websitename.com</code>) and enable only the required APIs for your project.</p>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step-number">3</div>
+        <div class="gs-step-content">
+          <h3>Store the API Key in a Server Environment Variable</h3>
+          <p>Create a <code>.env</code> file in your backend project root and add:</p>
+          <pre><code>GOOGLE_MAPS_API_KEY = YOUR_API_KEY_HERE</code></pre>
+          <p>Make sure to add <code>.env</code> to your <code>.gitignore</code> to avoid committing secrets.</p>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step-number">4</div>
+        <div class="gs-step-content">
+          <h3>Serve the API Key Securely via Your Backend</h3>
+          <p>Expose a backend API endpoint that returns the API key securely (example using Node.js & Express):</p>
+          <pre><code>app.get('/api/maps-key', (req, res) =&gt; {
+  res.json({ apiKey: process.env.GOOGLE_MAPS_API_KEY });
+});</code></pre>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step-number">5</div>
+        <div class="gs-step-content">
+          <h3>Load the Google Maps API Script Dynamically on the Frontend</h3>
+          <p>Fetch the API key from your backend and add the Maps script tag dynamically:</p>
+          <pre><code>fetch('/api/maps-key')
+  .then(res =&gt; res.json())
+  .then(data =&gt; {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${data.apiKey}&callback=initMap`;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  });
+
+function initMap() {
+  // Map initialization code here
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="gs-step">
+        <div class="gs-step-number">6</div>
+        <div class="gs-step-content">
+          <h3>Keep Your API Key Safe</h3>
+          <ul id="tipsforAPI">
+            <li>Never commit your API key directly to public repositories</li>
+            <li>Use HTTPS for your website</li>
+            <li>Regularly review and restrict API key usage in Google Cloud Console</li>
+            <li>Always always always follow these steps. Better safe than sorry!</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="container">
+      <p>&copy; 2025 MapKit</p>
+    </div>
+  </footer>
+</body>
+</html>
