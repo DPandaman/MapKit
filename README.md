@@ -19,9 +19,10 @@ Whether you're just testing out an idea or building a full-scale product, MapKit
 ---
 
 ## Getting Started
-
-1. **Clone the repo:**
+1. **Find a template on our site**
+    - Download and go to your editor
 2. **Setting up the API**
    - Go to the 'Getting Started' page and follow steps to generate an API Key
    - Create a .env file using .env-example as a template. Add your API key in!
 3. **Build!**
+   - Upload your own project or template to the site!
