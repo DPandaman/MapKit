@@ -8,7 +8,7 @@ Whether you're just testing out an idea or building a full-scale product, MapKit
 
 - **Plug-and-play templates** for common use cases  
 - **Template Variety:** choose between web templates of Chrome Extensions
-- **Community contributions** – developers can add and share their own templates
+- **Community contributions:** developers can add and share their own templates
 
 <!-- ## 📸 Demo
 
