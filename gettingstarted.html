@@ -68,10 +68,25 @@
         <div class="gs-step-number">4</div>
         <div class="gs-step-content">
           <h3>Serve the API Key Securely via Your Backend</h3>
-          <p>Expose a backend API endpoint that returns the API key securely (example using Node.js & Express):</p>
-          <pre><code>app.get('/api/maps-key', (req, res) =&gt; {
-  res.json({ apiKey: process.env.GOOGLE_MAPS_API_KEY });
-});</code></pre>
+          <p>Create a backend API endpoint that returns the API key securely (example using Node.js & Express):</p>
+          <pre><code>
+require('dotenv').config();
+const express = require('express');
+const path = require('path');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.static(path.join(__dirname)));
+
+app.get('/api-key', (req, res) => {
+  res.json({ key: process.env.GOOGLE_MAPS_API_KEY});
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+          </code></pre>
         </div>
       </div>
 
@@ -79,20 +94,28 @@
         <div class="gs-step-number">5</div>
         <div class="gs-step-content">
           <h3>Load the Google Maps API Script Dynamically on the Frontend</h3>
-          <p>Fetch the API key from your backend and add the Maps script tag dynamically:</p>
-          <pre><code>fetch('/api/maps-key')
-  .then(res =&gt; res.json())
-  .then(data =&gt; {
+          <p>Fetch the API key from your backend and add it to the bottom of your script:</p>
+          <pre><code>
+async function loadGoogleMaps() {
+  try {
+    const response = await fetch('/api-key');
+    if (!response.ok) {
+      throw new Error('Failed to fetch API key');
+    }
+    const data = await response.json();
+
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${data.apiKey}&callback=initMap`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${data.key}&callback=initMap&libraries=places`;
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
-  });
+  } catch (error) {
+    console.error("Error loading Google Maps API: ", error);
+  }
+}
 
-function initMap() {
-  // Map initialization code here
-}</code></pre>
+loadGoogleMaps();
+          </code></pre>
         </div>
       </div>
 

@@ -195,24 +195,25 @@
       });
     }
 
-    async function loadGoogleMaps() {
-      try {
-        const response = await fetch('/api-key');
-        if (!response.ok) {
-          throw new Error('Failed to fetch API key');
-        }
-        const data = await response.json();
+      async function loadGoogleMaps() {
+        try {
+          const response = await fetch('/api-key');
+          if (!response.ok) {
+            throw new Error('Failed to fetch API key');
+          }
+          const data = await response.json();
 
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${data.key}&callback=initMap&libraries=places`;
-        script.async = true;
-        script.defer = true;
-        document.head.appendChild(script);
-      } catch (error) {
-        console.error("Error loading Google Maps API: ", error);
+          const script = document.createElement('script');
+          script.src = `https://maps.googleapis.com/maps/api/js?key=${data.key}&callback=initMap&libraries=places`;
+          script.async = true;
+          script.defer = true;
+          document.head.appendChild(script);
+        } catch (error) {
+          console.error("Error loading Google Maps API: ", error);
+        }
       }
-    }
-    loadGoogleMaps();
+
+      loadGoogleMaps();
   </script>
  
 </body>
