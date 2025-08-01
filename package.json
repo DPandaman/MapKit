@@ -1,0 +1,25 @@
+{
+  "name": "googlemapsapi-sdk",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DPandaman/GoogleMapsAPI-SDK.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DPandaman/GoogleMapsAPI-SDK/issues"
+  },
+  "homepage": "https://github.com/DPandaman/GoogleMapsAPI-SDK#readme",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0"
+  }
+}

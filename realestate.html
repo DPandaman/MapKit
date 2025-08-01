@@ -96,7 +96,6 @@
     <div id="property-list"></div>
   </div>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=APIKEY&libraries=marker&callback=initMap" async defer></script>
   <script>
     const properties = [
       { id: 1, position: { lat: 41.891, lng: -87.624 }, price: "$425,000", address: "101 Lakeshore Dr, Chicago, IL", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80", description: "2 bed · 2 bath · 1,500 sqft" },
@@ -195,6 +194,24 @@
         listContainer.appendChild(card);
       });
     }
+
+    async function loadGoogleMaps() {
+      try {
+        const res = await fetch('/api-key');
+        const data = await res.json();
+
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${data.key}&libraries=marker&callback=initMap`;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      } catch (error) {
+        console.error("Failed to load Google Maps:", error);
+      }
+    }
+
+    loadGoogleMaps();
+
   </script>
 </body>
 </html>
